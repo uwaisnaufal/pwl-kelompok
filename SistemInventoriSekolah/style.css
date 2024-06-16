@@ -1,0 +1,296 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+ 
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.login-form {
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.input-group button {
+  width: 100%;
+  padding: 10px;
+  background: #28a745;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background: #218838;
+}
+
+.error-message {
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+.dashboard {
+  text-align: center;
+}
+
+.dashboard h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.dashboard p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.logout-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #c82333;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  padding: 10px 20px;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.nav-menu a:hover {
+  background: #555;
+}
+
+/*DESIGN*/
+
+/* Navbar */
+
+.navbar {
+  background-color: #7f6600;
+ 
+  width: 100%;
+  height: 70px;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  margin-top: 0;
+}
+
+.logo {
+  
+  margin-top: 10px;
+  text-align: center;
+}
+
+.logo-destination{
+  text-decoration: none;
+  color: #fff;
+}
+.navbar span{
+  color: rgb(255, 170, 0);
+}
+.menu {
+  margin-left: 1100px;
+  padding-top: 23px;
+}
+
+.menu ul li{
+  list-style: none;
+  display: inline-block;
+  margin-right: 70px;
+}
+
+.menu ul li a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+
+}
+
+.menu ul li a:hover{
+  color: #fdfdfd3e;
+}
+/* hero */
+
+.hero{
+    
+
+    background-image: url('asset/bg2.jpg');
+    min-height: 100vh; /* atau min-height: 100vh untuk menutupi layar penuh */
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex; /* agar align-items berfungsi */
+    justify-content: center; /* agar konten di tengah secara horizontal */
+  
+}
+
+
+
+/* footer */
+.footer {
+  background-color:   #7f6600; /* Warna latar belakang hijau tua */
+  width: 100%;               /* Lebar 100% dari elemen induk */
+  height: 70px;              /* Tinggi 70 piksel */
+  color: #fff;               /* Warna teks putih */
+  position: fixed;           /* Posisi tetap */
+  bottom: 0;                 /* Tempatkan di bagian bawah layar */
+  left: 0;                   /* Tempatkan di sisi kiri layar */
+  z-index: 1000;             /* Urutan lapisan */
+  text-align: center;        /* Posisikan teks di tengah */
+  line-height: 70px;         /* Vertikal pusatkan teks */
+}
+
+.footer p {
+  margin: 0;                 /* Hilangkan margin default dari <p> */
+}
+
+
+/* TABLE */
+.contable {
+  width: 80%;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  align-items: center;
+}
+input[type="text"], input[type="number"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  padding: 10px 15px;
+  background-color: #3498db
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+a.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #008CBA;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+a.btn:hover {
+  background-color: #007B9E;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #000000;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+a.btn-delete {
+  background-color: #f44336;
+}
+
+a.btn-delete:hover {
+  background-color: #7d0101;
+}
