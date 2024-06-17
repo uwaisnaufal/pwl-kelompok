@@ -8,11 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $auth = false;
     $q = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
     $hasil = mysqli_query($con, $q);
     if ($hasil->num_rows > 0) {
-        $auth = true;
         $rows = $hasil->fetch_assoc();
         $_SESSION['username'] = $rows['username'];
         $_SESSION['nama'] = $rows['nama'];
@@ -31,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>

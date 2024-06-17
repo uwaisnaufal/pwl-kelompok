@@ -1,7 +1,12 @@
 <?php
 session_start();
 
-include("config/conn.php");
+include("../../conn.php");
+
+if (!isset($_SESSION['username'])) {
+  header("Location: ../../../login.php");
+  exit();
+}
 
 if (isset($_SESSION['username']) && isset($_GET['id']) && is_numeric($_GET['id'])) {
   $id = $_GET['id'];
@@ -11,7 +16,7 @@ if (isset($_SESSION['username']) && isset($_GET['id']) && is_numeric($_GET['id']
   $sql = "DELETE FROM barang WHERE id = $id";
 
   if (mysqli_query($con, $sql)) {
-    header("location: ibarang.php"); // Redirect after successful deletion
+    header("location: ../../../barang.php");
   } else {
     echo "Error deleting record: " . mysqli_error($con);
   }
@@ -20,4 +25,3 @@ if (isset($_SESSION['username']) && isset($_GET['id']) && is_numeric($_GET['id']
 }
 
 mysqli_close($con);
-?>
