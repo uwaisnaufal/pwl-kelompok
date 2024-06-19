@@ -27,13 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Error updating record: " . mysqli_error($con);
   }
 }
+
+$q_kategori = mysqli_query($con, "SELECT id, nama FROM kategori");
+$q_merk = mysqli_query($con, "SELECT id, nama FROM merk");
+$q_ruangan = mysqli_query($con, "SELECT id, nama FROM ruangan");
+
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-  <title>Update Record</title>
+  <title>Edit/Update Record</title>
   <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
 </head>
 
@@ -44,38 +49,70 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </div>
 
-  <?php
-  // Assuming you have a way to get the ID of the record to be updated (e.g., from a URL parameter)
-  $update_id = $_GET['id']; // Get the ID from URL parameter (replace with your logic)
-  $sql = "SELECT * FROM barang WHERE id=$update_id";
-  $result = mysqli_query($con, $sql);
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
+  <div class="hero">
+    <?php
+    $update_id = $_GET['id'];
+    $sql = "SELECT * FROM barang WHERE id=$update_id";
+    $result = mysqli_query($con, $sql);
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+    ?>
+      <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+        <label>ID:</label>
+        <input type="number" name="id" value="<?= $row['id'] ?>" readonly>
+        <label>Nama:</label>
+        <input type="text" name="nama" value="<?= $row['nama'] ?>" required>
+        <label>Jumlah Awal:</label>
+        <input type="number" name="jumlah_awal" value="<?= $row['jumlah_awal'] ?>" required>
+        <label>Keterangan:</label>
+        <input type="text" name="keterangan" value="<?= $row['keterangan'] ?>" required>
 
-    // Pre-fill the form with existing data
-    echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '" method="post">';
-    echo '<label>ID:</label>';
-    echo '<input type="number" name="id" value="' . $row['id'] . '" readonly>'; // Set ID as readonly
-    echo '<label>Nama:</label>';
-    echo '<input type="text" name="nama" value="' . $row['nama'] . '" required>';
-    echo '<label>Jumlah Awal:</label>';
-    echo '<input type="number" name="jumlah_awal" value="' . $row['jumlah_awal'] . '" required>';
-    echo '<label>Keterangan:</label>';
-    echo '<input type="text" name="keterangan" value="' . $row['keterangan'] . '" required>';
-    echo '<label>ID Kategori:</label>';
-    echo '<input type="number" name="id_kategori" value="' . $row['id_kategori'] . '" required>';
-    echo '<label>ID Merk:</label>';
-    echo '<input type="number" name="id_merk" value="' . $row['id_merk'] . '" required>';
-    echo '<label>ID Ruangan:</label>';
-    echo '<input type="number" name="id_ruangan" value="' . $row['id_ruangan'] . '" required>';
-    echo '<input type="submit" name="submit" value="Update">';
-    echo '</form>';
-  } else {
-    echo "Record not found.";
-  }
+        <label>Kategori:</label>
+        <div class="select-container">
+          <select name="id_kategori" required>
+            <?php
+            while ($kategori_row = $q_kategori->fetch_assoc()) {
+              $selected = $kategori_row['id'] == $row['id_kategori'] ? 'selected' : '';
+              echo "<option value='{$kategori_row['id']}' $selected>{$kategori_row['nama']}</option>";
+            }
+            ?>
+          </select>
+        </div>
 
-  $con->close();
-  ?>
+        <label>Merk:</label>
+        <div class="select-container">
+          <select name="id_merk" required>
+            <?php
+            while ($merk_row = $q_merk->fetch_assoc()) {
+              $selected = $merk_row['id'] == $row['id_merk'] ? 'selected' : '';
+              echo "<option value='{$merk_row['id']}' $selected>{$merk_row['nama']}</option>";
+            }
+            ?>
+          </select>
+        </div>
+
+        <label>Ruangan:</label>
+        <div class="select-container">
+          <select name="id_ruangan" required>
+            <?php
+            while ($ruangan_row = $q_ruangan->fetch_assoc()) {
+              $selected = $ruangan_row['id'] == $row['id_ruangan'] ? 'selected' : '';
+              echo "<option value='{$ruangan_row['id']}' $selected>{$ruangan_row['nama']}</option>";
+            }
+            ?>
+          </select>
+        </div>
+
+        <input type="submit" name="submit" value="Update">
+      </form>
+    <?php
+    } else {
+      echo "Record not found.";
+    }
+
+    $con->close();
+    ?>
+  </div>
 
   <footer class="footer">
     <p>Created by -Balfaz Alawy- -Feri Ananda Setiawan- -Uwais Naufal Kusuma-</p>

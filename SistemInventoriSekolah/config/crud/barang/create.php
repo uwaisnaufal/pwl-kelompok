@@ -25,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Error: " . mysqli_error($con);
   }
 }
+
+$q_kategori = mysqli_query($con, "SELECT id, nama FROM kategori");
+$q_merk = mysqli_query($con, "SELECT id, nama FROM merk");
+$q_ruangan = mysqli_query($con, "SELECT id, nama FROM ruangan");
 ?>
 
 <!DOCTYPE html>
@@ -49,12 +53,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <input type="number" name="jumlah_awal" required>
       <label>Keterangan:</label>
       <input type="text" name="keterangan" required>
-      <label>ID Kategori:</label>
-      <input type="number" name="id_kategori" required>
-      <label>ID Merk:</label>
-      <input type="number" name="id_merk" required>
-      <label>ID Ruangan:</label>
-      <input type="number" name="id_ruangan" required>
+      <label>Kategori:</label>
+      <select name="id_kategori">
+        <?php
+        while ($kategori_rows = $q_kategori->fetch_assoc()) {
+        ?>
+          <option value="<?= $kategori_rows['id']; ?>"><?= $kategori_rows['id'] . ". " . $kategori_rows['nama']; ?></option>
+        <?php
+        }
+        ?>
+      </select>
+      <label>Merk:</label>
+      <select name="id_merk">
+        <?php
+        while ($merk_rows = $q_merk->fetch_assoc()) {
+        ?>
+          <option value="<?= $merk_rows['id']; ?>"><?= $merk_rows['id'] . ". " . $merk_rows['nama']; ?></option>
+        <?php
+        }
+        ?>
+      </select>
+      <label>Ruangan:</label>
+      <select name="id_ruangan">
+        <?php
+        while ($ruangan_rows = $q_ruangan->fetch_assoc()) {
+        ?>
+          <option value="<?= $ruangan_rows['id']; ?>"><?= $ruangan_rows['id'] . ". " . $ruangan_rows['nama']; ?></option>
+        <?php
+        }
+        ?>
+      </select>
       <input type="submit" name="submit" value="submit">
     </form>
   </div>

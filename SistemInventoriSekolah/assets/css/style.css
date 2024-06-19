@@ -226,15 +226,25 @@ input[type="number"] {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 16px;
 }
 
 input[type="submit"] {
+  font-size: 16px;
+  margin-top: 15px;
   padding: 10px 15px;
   background-color: #3498db;
 }
 
 input[type="submit"]:hover {
   background-color: #45a049;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 
 a.btn {
@@ -270,6 +280,14 @@ th {
   color: #333;
 }
 
+tr th:first-child {
+  text-align: left;
+}
+
+tr th:last-child {
+  text-align: right;
+}
+
 tr:nth-child(even) {
   background-color: #f1f1f1;
 }
@@ -278,10 +296,27 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
+tr td:first-child {
+  text-align: left;
+}
+
+tr td:last-child {
+  text-align: right;
+}
+
 a.btn-delete {
   background-color: #f44336;
 }
 
 a.btn-delete:hover {
   background-color: #7d0101;
+}
+
+select {
+  width: calc(100% - 22px);
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f8f8;
 }
