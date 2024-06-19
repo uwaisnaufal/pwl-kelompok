@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
       <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
         <label>ID:</label>
-        <input type="number" name="id" value="<?= $row['id'] ?>" readonly>
+        <input type="text" name="id" value="<?= $row['id'] ?>" readonly>
         <label>Nama:</label>
         <input type="text" name="nama" value="<?= $row['nama'] ?>" required>
         <label>Keterangan:</label>

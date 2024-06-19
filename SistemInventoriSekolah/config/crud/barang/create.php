@@ -9,6 +9,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $id = $_POST['id'];
   $nama = htmlspecialchars($_POST['nama']);
   $jumlah_awal = $_POST['jumlah_awal'];
   $keterangan = $_POST['keterangan'];
@@ -16,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $id_merk = $_POST['id_merk'];
   $id_ruangan = $_POST['id_ruangan'];
 
-  $sql = "INSERT INTO barang (nama, jumlah_awal, keterangan, id_kategori, id_merk, id_ruangan)
-            VALUES ('$nama', '$jumlah_awal', '$keterangan', '$id_kategori', '$id_merk', '$id_ruangan')";
+  $sql = "INSERT INTO barang (id, nama, jumlah_awal, keterangan, id_kategori, id_merk, id_ruangan)
+            VALUES ('$id', '$nama', '$jumlah_awal', '$keterangan', '$id_kategori', '$id_merk', '$id_ruangan')";
 
   if (mysqli_query($con, $sql)) {
     header("location: ../../../barang.php");
@@ -47,6 +48,8 @@ $q_ruangan = mysqli_query($con, "SELECT id, nama FROM ruangan");
   </div>
   <div class="hero">
     <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+      <label>ID:</label>
+      <input type="text" name="id" placeholder="Using Format : Bxxx. Example, B001" required>
       <label>Nama:</label>
       <input type="text" name="nama" required>
       <label>Jumlah Awal:</label>

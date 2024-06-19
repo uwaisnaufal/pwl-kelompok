@@ -59,7 +59,7 @@ $q_ruangan = mysqli_query($con, "SELECT id, nama FROM ruangan");
     ?>
       <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
         <label>ID:</label>
-        <input type="number" name="id" value="<?= $row['id'] ?>" readonly>
+        <input type="text" name="id" value="<?= $row['id'] ?>" readonly>
         <label>Nama:</label>
         <input type="text" name="nama" value="<?= $row['nama'] ?>" required>
         <label>Jumlah Awal:</label>

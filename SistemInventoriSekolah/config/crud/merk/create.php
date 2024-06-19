@@ -9,11 +9,12 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $id = $_POST['id'];
   $nama = htmlspecialchars($_POST['nama']);
   $keterangan = $_POST['keterangan'];
 
-  $sql = "INSERT INTO merk (nama, keterangan)
-            VALUES ('$nama', '$keterangan')";
+  $sql = "INSERT INTO merk (id, nama, keterangan)
+            VALUES ('$id', '$nama', '$keterangan')";
 
   if (mysqli_query($con, $sql)) {
     header("location: ../../../merk.php");
@@ -39,6 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </div>
   <div class="hero">
     <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+      <label>ID:</label>
+      <input type="text" name="id" placeholder="Using Format : Mxxx. Example, M001" required>
       <label>Nama:</label>
       <input type="text" name="nama" required>
       <label>Keterangan:</label>

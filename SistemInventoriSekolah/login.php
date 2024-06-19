@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <div class="login-form">
             <h2>Selamat datang di Sistem Inventori Sekolah!</h2>
-            <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+            <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" style="width:80%">
                 <div class="input-group">
                     <input required type="text" name="username" placeholder="Input Username" autocomplete="off">
                 </div>

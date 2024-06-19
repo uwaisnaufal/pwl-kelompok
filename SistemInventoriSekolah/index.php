@@ -47,6 +47,9 @@ if (isset($_GET['logout'])) {
             </div>
         </div>
     </div>
+    <footer class="footer">
+        <p>Created by -Balfaz Alawy- -Feri Ananda Setiawan- -Uwais Naufal Kusuma-</p>
+    </footer>
 </body>
 
 </html>

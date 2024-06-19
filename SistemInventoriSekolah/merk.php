@@ -63,7 +63,7 @@ if ($hasil->num_rows > 0) {
                     ?>
                         <tr>
                             <td colspan='4'><?= $authErr; ?></td>
-                        </tr>";
+                        </tr>
                         <?php
                     } else {
                         while ($rows = $hasil->fetch_assoc()) {

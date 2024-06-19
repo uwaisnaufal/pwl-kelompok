@@ -154,7 +154,7 @@ body {
 .menu ul li a {
   text-decoration: none;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .menu ul li a:hover {
@@ -221,7 +221,9 @@ label {
   align-items: center;
 }
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="password"],
+input[type="date"] {
   width: calc(100% - 22px);
   padding: 10px;
   border: 1px solid #ddd;
@@ -269,6 +271,7 @@ table {
 
 th,
 td {
+  font-size: 14px;
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;

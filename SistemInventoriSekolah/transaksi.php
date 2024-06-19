@@ -14,7 +14,8 @@ if ($con->connect_error) {
 
 $authErr = "";
 $auth = false;
-$q = "SELECT id, nama, keterangan FROM kategori";
+$q = "SELECT transaksi.id, barang.nama, transaksi.jenis, transaksi.status, transaksi.jumlah, transaksi.tanggal, transaksi.keterangan FROM transaksi 
+INNER JOIN barang ON transaksi.id_barang = barang.id";
 
 $hasil = mysqli_query($con, $q);
 if ($hasil->num_rows > 0) {
@@ -22,6 +23,7 @@ if ($hasil->num_rows > 0) {
 } else {
     $authErr = "Data tidak ditemukan!";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +32,7 @@ if ($hasil->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Kategori</title>
+    <title>Form Transaksi</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -43,16 +45,20 @@ if ($hasil->num_rows > 0) {
 
     <div class="hero">
         <div class="contable">
-            <h1>Data Kategori</h1>
+            <h1>Data Transaksi</h1>
             <div class="button-container">
-                <a href="config/crud/kategori/create.php" class="btn">Tambah Kategori</a>
+                <a href="config/crud/transaksi/create.php" class="btn">Tambah Transaksi</a>
                 <a href="index.php" class="btn btn-delete">Kembali ke Dashboard</a>
             </div>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nama</th>
+                        <th>Nama Barang</th>
+                        <th>Jenis Transaksi</th>
+                        <th>Status Transaksi</th>
+                        <th>Jumlah Barang</th>
+                        <th>Tanggal Transaksi</th>
                         <th>Keterangan</th>
                         <th>Actions</th>
                     </tr>
@@ -62,7 +68,7 @@ if ($hasil->num_rows > 0) {
                     if (!$auth) {
                     ?>
                         <tr>
-                            <td colspan='4'><?= $authErr; ?></td>
+                            <td colspan='8'><?= $authErr; ?></td>
                         </tr>
                         <?php
                     } else {
@@ -71,10 +77,14 @@ if ($hasil->num_rows > 0) {
                             <tr>
                                 <td><?= $rows["id"]; ?></td>
                                 <td><?= $rows["nama"]; ?></td>
+                                <td><?= $rows["jenis"]; ?></td>
+                                <td><?= $rows["status"]; ?></td>
+                                <td><?= $rows["jumlah"]; ?></td>
+                                <td><?= $rows["tanggal"]; ?></td>
                                 <td><?= $rows["keterangan"]; ?></td>
                                 <td>
-                                    <a href='config/crud/kategori/edit.php?id=<?= $rows["id"]; ?>' class='btn'>Edit</a>
-                                    <a href='config/crud/kategori/delete.php?id=<?= $rows["id"]; ?>' class='btn btn-delete' onclick='return confirm("Are you sure?")'>Delete</a>
+                                    <a href='config/crud/transaksi/edit.php?id=<?= $rows["id"]; ?>' class='btn'>Edit</a>
+                                    <a href='config/crud/transaksi/delete.php?id=<?= $rows["id"]; ?>' class='btn btn-delete' onclick='return confirm("Are you sure?")'>Delete</a>
                                 </td>
                             </tr>
                     <?php
