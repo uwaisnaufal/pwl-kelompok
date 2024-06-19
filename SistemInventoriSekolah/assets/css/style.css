@@ -9,7 +9,6 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
- 
 }
 
 .container {
@@ -118,7 +117,7 @@ body {
 
 .navbar {
   background-color: #7f6600;
- 
+
   width: 100%;
   height: 70px;
   color: #fff;
@@ -130,16 +129,15 @@ body {
 }
 
 .logo {
-  
   margin-top: 10px;
   text-align: center;
 }
 
-.logo-destination{
+.logo-destination {
   text-decoration: none;
   color: #fff;
 }
-.navbar span{
+.navbar span {
   color: rgb(255, 170, 0);
 }
 .menu {
@@ -147,61 +145,52 @@ body {
   padding-top: 23px;
 }
 
-.menu ul li{
+.menu ul li {
   list-style: none;
   display: inline-block;
   margin-right: 70px;
 }
 
-.menu ul li a{
+.menu ul li a {
   text-decoration: none;
   color: #fff;
-  font-size: 14px;
-
+  font-size: 16px;
 }
 
-.menu ul li a:hover{
+.menu ul li a:hover {
   color: #fdfdfd3e;
 }
 /* hero */
 
-.hero{
-    
-
-    background-image: url('asset/bg2.jpg');
-    min-height: 100vh; /* atau min-height: 100vh untuk menutupi layar penuh */
-    width: 100%;
-    color: #fff;
-    text-align: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex; /* agar align-items berfungsi */
-    justify-content: center; /* agar konten di tengah secara horizontal */
-  
+.hero {
+  background-image: url("../img/bg2.jpg");
+  min-height: 100vh; /* atau min-height: 100vh untuk menutupi layar penuh */
+  width: 100%;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex; /* agar align-items berfungsi */
+  justify-content: center; /* agar konten di tengah secara horizontal */
 }
-
-
 
 /* footer */
 .footer {
-  background-color:   #7f6600; /* Warna latar belakang hijau tua */
-  width: 100%;               /* Lebar 100% dari elemen induk */
-  height: 70px;              /* Tinggi 70 piksel */
-  color: #fff;               /* Warna teks putih */
-  position: fixed;           /* Posisi tetap */
-  bottom: 0;                 /* Tempatkan di bagian bawah layar */
-  left: 0;                   /* Tempatkan di sisi kiri layar */
-  z-index: 1000;             /* Urutan lapisan */
-  text-align: center;        /* Posisikan teks di tengah */
-  line-height: 70px;         /* Vertikal pusatkan teks */
+  background-color: #7f6600; /* Warna latar belakang hijau tua */
+  width: 100%; /* Lebar 100% dari elemen induk */
+  height: 70px; /* Tinggi 70 piksel */
+  color: #fff; /* Warna teks putih */
+  position: fixed; /* Posisi tetap */
+  bottom: 0; /* Tempatkan di bagian bawah layar */
+  left: 0; /* Tempatkan di sisi kiri layar */
+  z-index: 1000; /* Urutan lapisan */
+  text-align: center; /* Posisikan teks di tengah */
+  line-height: 70px; /* Vertikal pusatkan teks */
 }
 
 .footer p {
-  margin: 0;                 /* Hilangkan margin default dari <p> */
+  margin: 0; /* Hilangkan margin default dari <p> */
 }
-
 
 /* TABLE */
 .contable {
@@ -231,34 +220,47 @@ label {
   margin: 10px 0 5px;
   align-items: center;
 }
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"] {
   width: calc(100% - 22px);
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 16px;
 }
 
 input[type="submit"] {
+  font-size: 16px;
+  margin-top: 15px;
   padding: 10px 15px;
-  background-color: #3498db
+  background-color: #3498db;
 }
 
 input[type="submit"]:hover {
   background-color: #45a049;
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
 a.btn {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 20px;
-  background-color: #008CBA;
+  background-color: #008cba;
   color: white;
   text-decoration: none;
   border-radius: 4px;
 }
 
 a.btn:hover {
-  background-color: #007B9E;
+  background-color: #007b9e;
 }
 
 table {
@@ -267,7 +269,9 @@ table {
   margin-top: 20px;
 }
 
-th, td {
+th,
+td {
+  font-size: 14px;
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -279,6 +283,14 @@ th {
   color: #333;
 }
 
+tr th:first-child {
+  text-align: left;
+}
+
+tr th:last-child {
+  text-align: right;
+}
+
 tr:nth-child(even) {
   background-color: #f1f1f1;
 }
@@ -287,10 +299,27 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
+tr td:first-child {
+  text-align: left;
+}
+
+tr td:last-child {
+  text-align: right;
+}
+
 a.btn-delete {
   background-color: #f44336;
 }
 
 a.btn-delete:hover {
   background-color: #7d0101;
+}
+
+select {
+  width: calc(100% - 22px);
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f8f8;
 }

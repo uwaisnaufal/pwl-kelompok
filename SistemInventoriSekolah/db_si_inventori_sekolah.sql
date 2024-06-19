@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2024 at 06:02 PM
+-- Generation Time: Jun 19, 2024 at 04:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_inventori_sekolah`
+-- Database: `db_si_inventori_sekolah`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
+  `id` varchar(10) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `jenis_kelamin` enum('Laki-laki','Perempuan') NOT NULL,
   `phone` varchar(255) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `nama`, `jenis_kelamin`, `phone`, `alamat`, `username`, `password`) VALUES
-(1, 'Admin', 'Laki-laki', '082112219999', 'Lugunica', 'admin', '123');
+('A001', 'admin', 'Laki-laki', '082111112222', 'Lugunica', 'admin', '123');
 
 -- --------------------------------------------------------
 
@@ -51,15 +51,22 @@ INSERT INTO `admin` (`id`, `nama`, `jenis_kelamin`, `phone`, `alamat`, `username
 --
 
 CREATE TABLE `barang` (
-  `id` int(11) NOT NULL,
+  `id` varchar(10) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `jumlah_awal` int(11) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `tanggal_masuk` date NOT NULL DEFAULT current_timestamp(),
-  `id_kategori` int(11) NOT NULL,
-  `id_merk` int(11) NOT NULL,
-  `id_ruangan` int(11) NOT NULL
+  `id_kategori` varchar(10) NOT NULL,
+  `id_merk` varchar(10) NOT NULL,
+  `id_ruangan` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`id`, `nama`, `jumlah_awal`, `keterangan`, `tanggal_masuk`, `id_kategori`, `id_merk`, `id_ruangan`) VALUES
+('B001', 'Kursi', 30, 'Kursi yang disediakan untuk Kelas 1-1', '2024-06-19', 'K001', 'M001', 'R001');
 
 -- --------------------------------------------------------
 
@@ -68,10 +75,18 @@ CREATE TABLE `barang` (
 --
 
 CREATE TABLE `kategori` (
-  `id` int(11) NOT NULL,
+  `id` varchar(10) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `keterangan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id`, `nama`, `keterangan`) VALUES
+('K001', 'Mebel', 'Barang yang terbuat dari kayu'),
+('K002', 'Elektronik', 'Barang elektronik');
 
 -- --------------------------------------------------------
 
@@ -80,10 +95,18 @@ CREATE TABLE `kategori` (
 --
 
 CREATE TABLE `merk` (
-  `id` int(11) NOT NULL,
+  `id` varchar(10) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `keterangan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `merk`
+--
+
+INSERT INTO `merk` (`id`, `nama`, `keterangan`) VALUES
+('M001', 'Tanpa Merk', 'Barang-barang yang tidak ber-merk'),
+('M002', 'LG', 'Barang-barang ber-merk LG');
 
 -- --------------------------------------------------------
 
@@ -92,10 +115,18 @@ CREATE TABLE `merk` (
 --
 
 CREATE TABLE `ruangan` (
-  `id` int(11) NOT NULL,
+  `id` varchar(10) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `keterangan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ruangan`
+--
+
+INSERT INTO `ruangan` (`id`, `nama`, `keterangan`) VALUES
+('R001', 'Kelas 1-1', 'Ruangan untuk Kelas 1-1'),
+('R002', 'Lab Komputer', 'Ruangan untuk praktek komputer');
 
 -- --------------------------------------------------------
 
@@ -104,14 +135,22 @@ CREATE TABLE `ruangan` (
 --
 
 CREATE TABLE `transaksi` (
-  `id` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
+  `id` varchar(10) NOT NULL,
+  `id_barang` varchar(10) NOT NULL,
   `jenis` enum('Masuk','Keluar','Pinjam') NOT NULL,
   `status` enum('Belum','Selesai') NOT NULL,
   `jumlah` varchar(255) NOT NULL,
   `tanggal` date NOT NULL,
   `keterangan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `id_barang`, `jenis`, `status`, `jumlah`, `tanggal`, `keterangan`) VALUES
+('T001', 'B001', 'Masuk', 'Belum', '10', '2024-06-20', 'Kursi cadangan untuk anak-anak Kelas 1-1'),
+('T002', 'B001', 'Pinjam', 'Belum', '3', '2024-06-19', 'Kursi dipinjam untuk keperluan rapat');
 
 --
 -- Indexes for dumped tables
@@ -128,9 +167,9 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `barang_ibfk_1` (`id_ruangan`),
-  ADD KEY `barang_ibfk_2` (`id_merk`),
-  ADD KEY `barang_ibfk_3` (`id_kategori`);
+  ADD KEY `id_ruangan` (`id_ruangan`),
+  ADD KEY `id_merk` (`id_merk`),
+  ADD KEY `id_kategori` (`id_kategori`);
 
 --
 -- Indexes for table `kategori`
@@ -155,41 +194,7 @@ ALTER TABLE `ruangan`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `transaksi_ibfk_1` (`id_barang`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `barang`
---
-ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `kategori`
---
-ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `merk`
---
-ALTER TABLE `merk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ruangan`
---
-ALTER TABLE `ruangan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  ADD KEY `id_barang` (`id_barang`);
 
 --
 -- Constraints for dumped tables
@@ -199,15 +204,15 @@ ALTER TABLE `ruangan`
 -- Constraints for table `barang`
 --
 ALTER TABLE `barang`
-  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_ruangan`) REFERENCES `ruangan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `barang_ibfk_2` FOREIGN KEY (`id_merk`) REFERENCES `merk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `barang_ibfk_3` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_ruangan`) REFERENCES `ruangan` (`id`),
+  ADD CONSTRAINT `barang_ibfk_2` FOREIGN KEY (`id_merk`) REFERENCES `merk` (`id`),
+  ADD CONSTRAINT `barang_ibfk_3` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id`);
 
 --
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
