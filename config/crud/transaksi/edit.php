@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $keterangan = $_POST['keterangan'];
 
   $sql = "UPDATE transaksi SET id_barang='$id_barang', jenis='$jenis', status='$status', jumlah='$jumlah', tanggal='$tanggal', keterangan='$keterangan'
-                WHERE id=$id";
+                WHERE id='$id'";
 
   if (mysqli_query($con, $sql)) {
     header("Location: ../../../transaksi.php");
@@ -51,7 +51,7 @@ $q_barang = mysqli_query($con, "SELECT barang.id, barang.nama, ruangan.nama AS n
     <?php
     $update_id = $_GET['id'];
     $sql = "SELECT transaksi.id, barang.id AS id_barang, barang.nama, transaksi.jenis, transaksi.status, transaksi.jumlah, transaksi.tanggal, transaksi.keterangan FROM transaksi 
-INNER JOIN barang ON transaksi.id_barang = barang.id WHERE transaksi.id=$update_id";
+INNER JOIN barang ON transaksi.id_barang = barang.id WHERE transaksi.id='$update_id'";
     $result = mysqli_query($con, $sql);
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();

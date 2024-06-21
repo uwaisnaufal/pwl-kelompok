@@ -13,7 +13,7 @@ if (isset($_SESSION['username']) && isset($_GET['id']) && is_numeric($_GET['id']
 
   $id = mysqli_real_escape_string($con, $id);
 
-  $sql = "DELETE FROM ruangan WHERE id = $id";
+  $sql = "DELETE FROM ruangan WHERE id = '$id'";
 
   if (mysqli_query($con, $sql)) {
     header("location: ../../../ruangan.php");

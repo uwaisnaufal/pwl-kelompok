@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $sql = "UPDATE barang SET nama='$nama', jumlah_awal='$jumlah_awal', keterangan='$keterangan', 
                 id_kategori='$id_kategori', id_merk='$id_merk', id_ruangan='$id_ruangan' 
-                WHERE id=$id";
+                WHERE id='$id'";
 
   if (mysqli_query($con, $sql)) {
     header("Location: ../../../barang.php");
@@ -52,7 +52,7 @@ $q_ruangan = mysqli_query($con, "SELECT id, nama FROM ruangan");
   <div class="hero">
     <?php
     $update_id = $_GET['id'];
-    $sql = "SELECT * FROM barang WHERE id=$update_id";
+    $sql = "SELECT * FROM barang WHERE id='$update_id'";
     $result = mysqli_query($con, $sql);
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();

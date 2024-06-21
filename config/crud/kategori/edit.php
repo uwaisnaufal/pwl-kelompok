@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nama = htmlspecialchars($_POST['nama']);
   $keterangan = $_POST['keterangan'];
 
-  $sql = "UPDATE kategori SET nama='$nama', keterangan='$keterangan' WHERE id=$id";
+  $sql = "UPDATE kategori SET nama='$nama', keterangan='$keterangan' WHERE id='$id'";
 
   if (mysqli_query($con, $sql)) {
     header("Location: ../../../kategori.php");
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <div class="hero">
     <?php
     $update_id = $_GET['id'];
-    $sql = "SELECT * FROM kategori WHERE id=$update_id";
+    $sql = "SELECT * FROM kategori WHERE id='$update_id'";
     $result = mysqli_query($con, $sql);
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
