@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
   exit();
 }
 
-if (isset($_SESSION['username']) && isset($_GET['id']) && is_numeric($_GET['id'])) {
+if (isset($_SESSION['username']) && isset($_GET['id'])) {
   $id = $_GET['id'];
 
   $id = mysqli_real_escape_string($con, $id);
